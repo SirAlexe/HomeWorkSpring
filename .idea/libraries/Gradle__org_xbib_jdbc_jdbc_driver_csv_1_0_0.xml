@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.xbib.jdbc:jdbc-driver-csv:1.0.0">
+    <CLASSES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/org.xbib.jdbc/jdbc-driver-csv/1.0.0/beef650b59beb6047336bd858adb7c466ae6bdc1/jdbc-driver-csv-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/org.xbib.jdbc/jdbc-driver-csv/1.0.0/b7af3990b5437f3ff745626ddf3c2e866544412e/jdbc-driver-csv-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

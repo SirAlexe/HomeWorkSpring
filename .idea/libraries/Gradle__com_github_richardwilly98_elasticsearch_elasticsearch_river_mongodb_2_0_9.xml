@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.richardwilly98.elasticsearch:elasticsearch-river-mongodb:2.0.9">
+    <CLASSES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.9/f4af46fb7807fd39265ebe26699954e515d2ff4e/elasticsearch-river-mongodb-2.0.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.9/275413efb19e53189b84f7b43db8a444224e6261/elasticsearch-river-mongodb-2.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: ru.yandex.qatools.embed:embedded-services:1.21">
+    <CLASSES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/ru.yandex.qatools.embed/embedded-services/1.21/222b3dde4f4ea3cef8e77f09687195c86d1c16c/embedded-services-1.21.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://D:/gradle-2.13/caches/modules-2/files-2.1/ru.yandex.qatools.embed/embedded-services/1.21/a213b18e7d4b5e9d04472103731f8f46800fcd0a/embedded-services-1.21-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

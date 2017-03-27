@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+    </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="client_main" target="1.8" />
+      <module name="client_test" target="1.8" />
+      <module name="jax-rest_main" target="1.8" />
+      <module name="jax-rest_test" target="1.8" />
+      <module name="jax-ws_main" target="1.8" />
+      <module name="jax-ws_test" target="1.8" />
+      <module name="server_main" target="1.8" />
+      <module name="server_test" target="1.8" />
+      <module name="spring-rest_main" target="1.8" />
+      <module name="spring-rest_test" target="1.8" />
+      <module name="spring-ws_main" target="1.8" />
+      <module name="spring-ws_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
