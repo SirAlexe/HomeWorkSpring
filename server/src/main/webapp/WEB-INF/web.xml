@@ -4,7 +4,7 @@
 
     <servlet>
         <servlet-name>spring-ws</servlet-name>
-        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextClass</param-name>
             <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
@@ -13,7 +13,7 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>ru.mera.samples.infrastructure.config.MtomServerConfiguration</param-value>
         </init-param>
-        <load-on-startup>0</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <servlet-mapping>

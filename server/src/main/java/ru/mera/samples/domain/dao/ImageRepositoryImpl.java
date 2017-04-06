@@ -2,8 +2,9 @@ package ru.mera.samples.domain.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import ru.mera.samples.domain.entities.ImageEntity;
 import org.springframework.stereotype.Repository;
+
+import ru.mera.samples.domain.entities.ImageEntity;
 
 
 @Repository

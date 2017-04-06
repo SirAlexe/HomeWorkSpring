@@ -6,6 +6,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import ru.mera.samples.domain.entities.AbstractNamedEntity;
+
 @Entity
 @Table( name = "IMAGES" )
 @Inheritance( strategy = InheritanceType.JOINED )

@@ -8,19 +8,20 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
 import ru.mera.samples.application.service.AddressService;
 import ru.mera.samples.application.service.AddressServiceImpl;
+import ru.mera.samples.application.service.ImageService;
+import ru.mera.samples.application.service.ImageServiceImpl;
 import ru.mera.samples.application.service.UserService;
 import ru.mera.samples.application.service.UserServiceImpl;
 import ru.mera.samples.domain.dao.AddressRepository;
 import ru.mera.samples.domain.dao.AddressRepositoryImpl;
 import ru.mera.samples.domain.dao.ImageRepository;
 import ru.mera.samples.domain.dao.ImageRepositoryImpl;
-import ru.mera.samples.application.service.ImageService;
-import ru.mera.samples.application.service.ImageServiceImpl;
 import ru.mera.samples.domain.dao.UserRepository;
 import ru.mera.samples.domain.dao.UserRepositoryImpl;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -33,7 +34,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableWebMvc
 @Import( { JPAConfig.class, AopConfiguration.class } )
-@ComponentScan( "ru.mera.samples.domain.dao" )
+@ComponentScan( {"ru.mera.samples.domain.dao","ru.mera.samples.presentation.rest","ru.mera.samples.application.service"} )
+
 public class MtomServerConfiguration {
 
   @Bean

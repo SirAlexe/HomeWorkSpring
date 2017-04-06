@@ -47,6 +47,7 @@ public abstract class AbstractRepository<T extends AbstractEntity> implements En
 
   @Override
   public void save(T entity) {
+	  System.out.println("entityManager = "+entityManager);
     entityManager.persist(entity);
   }
 

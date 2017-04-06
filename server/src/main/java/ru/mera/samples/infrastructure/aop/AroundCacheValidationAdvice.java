@@ -16,6 +16,9 @@
 
 package ru.mera.samples.infrastructure.aop;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -23,16 +26,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import ru.mera.samples.domain.entities.ImageEntity;
 import ru.mera.samples.infrastructure.services.ImageCacheService;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.Serializable;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Simple client that calls the <code>GetFlights</code> and <code>BookFlight</code> operations using JAX-WS.

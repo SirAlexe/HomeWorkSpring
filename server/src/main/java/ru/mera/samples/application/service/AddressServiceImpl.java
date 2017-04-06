@@ -29,11 +29,11 @@ public class AddressServiceImpl extends AbstractServiceImpl<AddressDTO,AddressEn
   private static final Log logger = LogFactory.getLog(AddressServiceImpl.class);
 
   @Autowired
-  private AddressRepository imageRepository;
+  private AddressRepository addressRepository;
 
   @Override
   protected AddressRepository getRepository() {
-    return imageRepository;
+    return addressRepository;
   }
 
 }

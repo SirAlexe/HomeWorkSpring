@@ -21,6 +21,12 @@ import org.apache.commons.logging.LogFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.mera.samples.application.dto.AbstractDTO;
+import ru.mera.samples.application.mappings.AddressToDTOMap;
+import ru.mera.samples.application.mappings.AddressToEntityMap;
+import ru.mera.samples.application.mappings.ImageToDTOMap;
+import ru.mera.samples.application.mappings.ImageToEntityMap;
+import ru.mera.samples.application.mappings.UserToDTOMap;
+import ru.mera.samples.application.mappings.UserToEntityMap;
 import ru.mera.samples.domain.dao.EntityRepository;
 import ru.mera.samples.domain.entities.AbstractEntity;
 
@@ -50,8 +56,10 @@ public abstract class AbstractServiceImpl<T extends AbstractDTO, E extends Abstr
 
   @Override
   public void create(T address) {
+		
     E abstractEntity = modelMapper.map(address, entityClass);
     getRepository().save(abstractEntity);
+
   }
 
   @Override
