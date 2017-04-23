@@ -1,16 +1,17 @@
 package ru.mera.samples.infrastructure.services;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import ru.mera.samples.domain.entities.ImageEntity;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import java.awt.image.BufferedImage;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import ru.mera.samples.domain.entities.ImageEntity;
 
 
 public class ImageCacheServiceImpl implements ImageCacheService {

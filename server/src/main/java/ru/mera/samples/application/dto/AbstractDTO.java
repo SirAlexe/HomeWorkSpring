@@ -1,6 +1,6 @@
 package ru.mera.samples.application.dto;
 
-public abstract class AbstractDTO {
+public abstract class AbstractDTO  {
 
   private Long id;
 

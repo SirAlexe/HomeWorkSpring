@@ -19,6 +19,12 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import ru.mera.samples.application.mappings.AddressToDTOMap;
+import ru.mera.samples.application.mappings.AddressToEntityMap;
+import ru.mera.samples.application.mappings.ImageToDTOMap;
+import ru.mera.samples.application.mappings.ImageToEntityMap;
+import ru.mera.samples.application.mappings.UserToDTOMap;
+import ru.mera.samples.application.mappings.UserToEntityMap;
 import ru.mera.samples.application.service.EmbeddedServiceBean;
 import ru.yandex.qatools.embed.service.PostgresEmbeddedService;
 
@@ -44,9 +50,7 @@ public class JPAConfig {
 
 	@Bean
 	public JpaTransactionManager transactionManager() {
-		System.out.println("===>JpaTransactionManager");
-		EntityManagerFactory entityManagerFactory1= entityManagerFactory().getObject();
-		System.out.println("===>JpaTransactionManager"+entityManagerFactory1);
+		EntityManagerFactory entityManagerFactory1 = entityManagerFactory().getObject();
 		JpaTransactionManager jtManager = new JpaTransactionManager(entityManagerFactory1);
 		return jtManager;
 	}
@@ -77,27 +81,62 @@ public class JPAConfig {
 	@Bean
 	public ModelMapper modelMapper() throws IOException {
 		ModelMapper modelMapper = new ModelMapper();
+
+		modelMapper.addMappings(new ImageToDTOMap());
+		modelMapper.addMappings(new ImageToEntityMap());
+
+		modelMapper.addMappings(userToDTOMap());
+
+		// TODO don't work modelMapper.addMappings(userToEntityMap());
+
+		modelMapper.addMappings(addressToEntityMap());
+		modelMapper.addMappings(addressToDTOMap());
+
 		return modelMapper;
+	}
+
+	@Bean
+	// @Scope( value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode =
+	// ScopedProxyMode.TARGET_CLASS)
+	public AddressToDTOMap addressToDTOMap() {
+		return new AddressToDTOMap();
+	}
+
+	@Bean
+	public AddressToEntityMap addressToEntityMap() {
+		return new AddressToEntityMap();
+	}
+
+	@Bean
+	public UserToDTOMap userToDTOMap() {
+		return new UserToDTOMap();
+	}
+
+	@Bean
+	public UserToEntityMap userToEntityMap() {
+		return new UserToEntityMap();
 	}
 
 	private Properties getJPAProperties() {
 		Properties properties = new Properties();
-		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.format_sql", "true");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-//		properties.setProperty("javax.persistence.jdbc.driver", "org.postgresql.Driver");
-//		properties.setProperty("javax.persistence.jdbc.url",
-//				"jdbc:postgresql://" + getHost() + ":" + getPort() + "/" + getDbName());
-//		properties.setProperty("javax.persistence.jdbc.user", getUsername());
-//		properties.setProperty("javax.persistence.jdbc.password", getPassword());
+		// properties.setProperty("javax.persistence.jdbc.driver",
+		// "org.postgresql.Driver");
+		// properties.setProperty("javax.persistence.jdbc.url",
+		// "jdbc:postgresql://" + getHost() + ":" + getPort() + "/" +
+		// getDbName());
+		// properties.setProperty("javax.persistence.jdbc.user", getUsername());
+		// properties.setProperty("javax.persistence.jdbc.password",
+		// getPassword());
 		return properties;
 	}
 
 	@Bean
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://" + getHost() + ":" + getPort() + "/" + getDbName());
 		dataSource.setUsername(getUsername());

@@ -20,32 +20,67 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.mera.samples.application.dto.UserDTO;
-import ru.mera.samples.domain.dao.UserRepository;
-import ru.mera.samples.domain.entities.UserEntity;
 
+import ru.mera.samples.application.dto.UserDTO;
+import ru.mera.samples.domain.dao.AddressRepository;
+import ru.mera.samples.domain.dao.UserRepository;
+import ru.mera.samples.domain.entities.AddressEntity;
+import ru.mera.samples.domain.entities.UserEntity;
 
 public class UserServiceImpl extends AbstractServiceImpl<UserDTO, UserEntity> implements UserService {
 
-  private static final Log logger = LogFactory.getLog(UserServiceImpl.class);
+	private static final Log logger = LogFactory.getLog(UserServiceImpl.class);
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private AddressRepository addressRepository;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Override
+	protected UserRepository getRepository() {
+		return userRepository;
+	}
+
+	@Override
+	public UserDTO load(String name) {
+		logger.info("Loading user " + name);
+		UserEntity userEntity = userRepository.findByName(name);
+		UserDTO userDTO = modelMapper.map(userEntity, UserDTO.class);
+		return userDTO;
+	}
+
+	@Override
+	public void create(UserDTO address) {
+		UserEntity userEntity = new UserEntity();
+
+		userEntity.setName(address.getLogin());
+		userEntity.setFirstName(address.getFirstName());
+		userEntity.setLastName(address.getLastName());
+		AddressEntity addressEntity;
+		addressEntity = addressRepository.findById(address.getAddressId());
+		userEntity.setAddress(addressEntity);
+
+		getRepository().save(userEntity);
+	}
+	
+	@Override
+	  public void update(UserDTO address) {
+		UserEntity userEntity = new UserEntity();
+		userEntity.setName(address.getLogin());
+		userEntity.setFirstName(address.getFirstName());
+		userEntity.setLastName(address.getLastName());
+		AddressEntity addressEntity;
+		addressEntity = addressRepository.findById(address.getAddressId());
+		userEntity.setAddress(addressEntity);
+		
+	    getRepository().update(userEntity);
+	  }
+
+	 
 
 
-  @Autowired
-  private UserRepository userRepository;
-
-  @Autowired
-  private ModelMapper modelMapper;
-
-  @Override
-  public UserDTO load(String name) {
-    logger.info("Loading user " + name);
-    UserEntity userEntity    = userRepository.findByName(name);
-    UserDTO   userDTO = modelMapper.map(userEntity, UserDTO.class);
-    return userDTO;
-  }
-
-  @Override
-  public UserRepository getRepository() {
-    return userRepository;
-  }
 }

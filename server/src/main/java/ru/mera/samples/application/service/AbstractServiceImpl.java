@@ -16,23 +16,18 @@
 
 package ru.mera.samples.application.service;
 
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import ru.mera.samples.application.dto.AbstractDTO;
-import ru.mera.samples.application.mappings.AddressToDTOMap;
-import ru.mera.samples.application.mappings.AddressToEntityMap;
-import ru.mera.samples.application.mappings.ImageToDTOMap;
-import ru.mera.samples.application.mappings.ImageToEntityMap;
-import ru.mera.samples.application.mappings.UserToDTOMap;
-import ru.mera.samples.application.mappings.UserToEntityMap;
 import ru.mera.samples.domain.dao.EntityRepository;
 import ru.mera.samples.domain.entities.AbstractEntity;
-
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public abstract class AbstractServiceImpl<T extends AbstractDTO, E extends AbstractEntity>
@@ -56,8 +51,9 @@ public abstract class AbstractServiceImpl<T extends AbstractDTO, E extends Abstr
 
   @Override
   public void create(T address) {
-		
+	
     E abstractEntity = modelMapper.map(address, entityClass);
+    System.out.println("AbstractServiceImpl create " + address + ", abstractEntity "+abstractEntity);	
     getRepository().save(abstractEntity);
 
   }
@@ -86,7 +82,8 @@ public abstract class AbstractServiceImpl<T extends AbstractDTO, E extends Abstr
   @Override
   public void delete(Long id) {
     E abstractEntity = getRepository().findById(id);
-    getRepository().save(abstractEntity);
+    System.out.println("abstractEntity="+abstractEntity);
+    getRepository().delete(abstractEntity);
   }
 
   protected abstract EntityRepository<E> getRepository();

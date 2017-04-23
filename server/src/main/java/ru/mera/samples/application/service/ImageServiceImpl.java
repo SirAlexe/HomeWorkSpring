@@ -16,12 +16,6 @@
 
 package ru.mera.samples.application.service;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,26 +35,5 @@ public class ImageServiceImpl extends AbstractServiceImpl<ImageDTO, ImageEntity>
 	public ImageRepository getRepository() {
 		return imageRepository;
 	}
-
-	@Override
-	public void create(ImageDTO imageDTO) {
-		//imageRepository =new ImageRepositoryImpl();
-		ImageEntity imageEntity = new ImageEntity();
-		imageEntity.setId(imageDTO.getId());
-		imageEntity.setName(imageDTO.getName());
-
-		if (imageDTO.getImage() != null) {
-			byte[] imageInByte = null;
-			try (ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
-				ImageIO.write((BufferedImage) imageDTO.getImage(), "png", baos);
-				imageInByte = baos.toByteArray();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			imageEntity.setImage(imageInByte);
-		}
-		System.out.println("imageRepository="+getRepository());
-		 getRepository().save(imageEntity);
-	}
+	
 }

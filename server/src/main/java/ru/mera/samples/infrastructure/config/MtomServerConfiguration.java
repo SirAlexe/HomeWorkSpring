@@ -8,6 +8,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import ru.mera.samples.application.service.AddressService;
@@ -33,7 +34,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableAspectJAutoProxy
 @EnableSwagger2
 @EnableWebMvc
-@Import( { JPAConfig.class, AopConfiguration.class } )
+@Import( { JPAConfig.class, AopConfiguration.class, SecurityConfig.class } )
 @ComponentScan( {"ru.mera.samples.domain.dao","ru.mera.samples.presentation.rest","ru.mera.samples.application.service"} )
 
 public class MtomServerConfiguration {

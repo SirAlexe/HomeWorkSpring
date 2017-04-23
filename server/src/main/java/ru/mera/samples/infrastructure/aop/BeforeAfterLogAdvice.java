@@ -28,36 +28,41 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.Optional;
 
 /**
- * Simple client that calls the <code>GetFlights</code> and <code>BookFlight</code> operations using JAX-WS.
+ * Simple client that calls the <code>GetFlights</code> and
+ * <code>BookFlight</code> operations using JAX-WS.
  *
  * @author
  */
 @Aspect
 public class BeforeAfterLogAdvice {
 
-  private static final Log logger = LogFactory.getLog(BeforeAfterLogAdvice.class);
+	private static final Log logger = LogFactory.getLog(BeforeAfterLogAdvice.class);
 
-  @Pointcut( "within(org.springframework.ws.samples.mtom.service.*)" )
-  public void inImageRepositoryEndpoint() {
-  }
+	// @Pointcut( "within(org.springframework.ws.samples.mtom.service.*)" )
+	@Pointcut("within(ru.mera.samples.presentation.rest.*)")
+	public void inImageRepositoryEndpoint() {
+	}
 
-  @Before( "inImageRepositoryEndpoint()" )
+	@Before( "inImageRepositoryEndpoint()" )
   public void before(JoinPoint joinPoint) {
     final String[] principals = new String[1];
+    System.out.println("===>"+joinPoint.getSignature().getName());
+    System.out.println("===>SecurityContextHolder.getContext()"+SecurityContextHolder.getContext());
+    System.out.println("===>"+ SecurityContextHolder.getContext().getAuthentication());
+    System.out.println("===>"+ SecurityContextHolder.getContext().getAuthentication().getPrincipal());
     Optional.of(SecurityContextHolder.getContext()).ifPresent(
         securityContext -> Optional.of(securityContext.getAuthentication()).ifPresent(
             authentication -> Optional.of(authentication.getPrincipal()).ifPresent(o -> principals[0] = o.toString())));
-    logger.info("Before method: " + joinPoint.getSignature().getName() + " by user " + principals);
+    System.out.println("Before method: " + joinPoint.getSignature().getName() + " by user " + principals);
   }
 
-  @AfterReturning( "inImageRepositoryEndpoint()" )
-  public void afterReturning(JoinPoint joinPoint) {
-    final String[] principals = new String[1];
-    Optional.of(SecurityContextHolder.getContext()).ifPresent(
-        securityContext -> Optional.of(securityContext.getAuthentication()).ifPresent(
-            authentication -> Optional.of(authentication.getPrincipal()).ifPresent(o -> principals[0] = o.toString())));
-    logger.info("After method: " + joinPoint.getSignature().getName() + " by user " + principals);
-  }
-
+	@AfterReturning("inImageRepositoryEndpoint()")
+	public void afterReturning(JoinPoint joinPoint) {
+		final String[] principals = new String[1];
+		Optional.of(SecurityContextHolder.getContext()).ifPresent(
+				securityContext -> Optional.of(securityContext.getAuthentication()).ifPresent(authentication -> Optional
+						.of(authentication.getPrincipal()).ifPresent(o -> principals[0] = o.toString())));
+		System.out.println("After method: " + joinPoint.getSignature().getName() + " by user " + principals);
+	}
 
 }
