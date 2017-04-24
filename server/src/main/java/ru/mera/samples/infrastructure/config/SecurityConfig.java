@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		System.out.println("===>configure");
 		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
+		http.csrf().disable();
 		
 	}
 }
